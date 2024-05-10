@@ -1,4 +1,4 @@
-const categories = [
+let categories = [
     {
         name: "Food",
         colorR: 255,

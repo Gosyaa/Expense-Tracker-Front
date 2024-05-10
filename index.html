@@ -15,18 +15,13 @@
         <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
         <script src="plot-generator.js"></script>
 
-        <script src="pop-up.js"></script>
-        <button class="pop-up" onclick="popUp();"> Открыть окно </button>
+        <button class="pop-up" onclick="popUp('category');"> Добавить категорию </button>
+        <button class="pop-up" onclick="popUp('spend');"> Добавить трату </button>
         <div id="pop-up-overlay" class="overlay-container">
-            <div id="box" class="pop-up-box">
-                <h2> Окно </h2>
-                <form>
-                    <input type="text">
-                    <input type="submit">
-                </form>
-                <button class="pop-up" onclick="popUp();"> Закрыть окно </button>
-            </div>
+            <div id="box" class="pop-up-box">  </div>
         </div> 
+        <script src="pop-up.js"></script>
+
         <div id="lists-div"> </div>
         <script src="category-list.js"></script>
     </body>
