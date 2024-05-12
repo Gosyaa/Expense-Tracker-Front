@@ -7,23 +7,26 @@ function generatePlot(){
     categories.forEach(element => {
         data.push(0);
         label.push(element.name);
-        color.push(`rgb(${element.colorR}, ${element.colorG}, ${element.colorB})`);
+        color.push(element.color);
+        //color.push(`rgb(${element.colorR}, ${element.colorG}, ${element.colorB})`);
     });
 
     spends.forEach((spend, index) =>{
-        let f = false;
-        for (let i =  0; i < n; i++){
-            if (spend.category == label[i]){
-                f = true;
-                spends[index].validCategory = true;
-                data[i] += spend.amount;
-                break;
+        if (spend.date >= dateStart.toISOString() && spend.date <= dateEnd.toISOString()){
+            let f = false;
+            for (let i =  0; i < n; i++){
+                if (spend.category == label[i]){
+                    f = true;
+                    spends[index].validCategory = true;
+                    data[i] += spend.amount;
+                    break;
+                }
             }
-        }
-        if (!f){
-            spends[index].validCategory = false;
-            data[n - 1] += spend.amount;
-        }
+            if (!f){
+                spends[index].validCategory = false;
+                data[n - 1] += spend.amount;
+            }
+        }   
     });
 
     const pieData = {

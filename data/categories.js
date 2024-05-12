@@ -1,26 +1,26 @@
 let categories = [
     {
+        id: 1,
         name: "Food",
-        colorR: 255,
-        colorG: 210,
-        colorB: 0
+        color: '#ffd200',
+        sub: []
     },
     {
+        id: 2,
         name: "Transport",
-        colorR: 255,
-        colorG: 0,
-        colorB: 120
+        color: '#ff0078',
+        sub: []
     },
     {
+        id: 3,
         name: "Cloth",
-        colorR: 0,
-        colorG: 255,
-        colorB: 180
+        color: '#00ffb3',
+        sub: []
     },
     {
+        id: 4,
         name: "Other",
-        colorR: 150,
-        colorG: 150,
-        colorB: 150
+        color: '#969696',
+        sub: []
     }
 ];

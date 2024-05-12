@@ -59,26 +59,13 @@ function closePopUp(){
     box.classList.toggle('show');
 }
 
-function hexToRgb(hex) {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
-
-let form = document.getElementById('category-form');
-form.addEventListener('submit', addCategory);
-form = document.ge
-
 function addCategory(event){
     event.preventDefault();
 
     const categoryNameEl = document.getElementById('category-name-input');
     const categoryName = categoryNameEl.value;
     const colorEl = document.getElementById('color-picker');
-    const color = hexToRgb(colorEl.value);
+    const color_hex = colorEl.value;
     let unique = false;
     if (categoryName.length > 0 && categoryName.length <= 75){
         unique = true;
@@ -89,14 +76,13 @@ function addCategory(event){
         });
         if (unique){
             categories.push({
+                id: Math.floor(Math.random() * 10000),
                 name: categoryName,
-                colorR: color.r,
-                colorG: color.g,
-                colorB: color.b
+                color: color_hex,
+                sub: []
             });
             const n = categories.length;
             [categories[n - 1], categories[n - 2]] = [categories[n - 2], categories[n - 1]];
-            //console.log(categories);
             generatePlot();
             generateList();
         }
@@ -131,6 +117,6 @@ function addSpend(event){
     }
     else{
         alert('Ошибка');
-        
+        //Улучшить оповешение
     }
 }

@@ -26,17 +26,19 @@ function generateList(){
         document.getElementById(`content-${category.name}`).style.display = 'none';
         const content = document.getElementById(`list-${category.name}`);
         spends.forEach(spend => {
-            if (spend.category == category.name){
-                content.innerHTML += `
-                    <li> ${spend.name} — ${spend.amount}$ </li>
-                `;
+            if (spend.date >= dateStart.toISOString() && spend.date <= dateEnd.toISOString()){
+                if (spend.category == category.name){
+                    content.innerHTML += `
+                        <li> ${spend.name} — ${spend.amount}$ </li>
+                    `;
+                }
+                else if (category.name == 'Other' && !spend.validCategory){
+                    content.innerHTML += `
+                        <li> ${spend.name} — ${spend.amount}$ </li>
+                    `;
+                }
             }
-            else if (category.name == 'Other' && !spend.validCategory){
-                content.innerHTML += `
-                    <li> ${spend.name} — ${spend.amount}$ </li>
-                `;
-            }
-        })
+        });
     });
 
 }
