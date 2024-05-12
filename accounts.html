@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My Accounts </title>
+        <link rel="stylesheet" href="styles/pop-up.css">
+    </head>
+    <body>
+        <script src="data/categories.js"></script>
+        <script src="data/spends.js"></script>
+        <script src="data/accounts.js"></script>
+
+        <h1 class="title"> My accounts </h1>
+        <div class="accounts" id="accounts">
+
+        </div>
+        <script src="accountsHandler.js"></script>
+
+        <script src="balanceUpdater.js"></script>
+        <script src="pop-up.js"></script>
+
+        <button class="pop-up" onclick="popUp('transfer');"> Transfer Money </button>
+        <button class="pop-up" onclick="popUp('add');"> Add Income </button>
+        <button class="pop-up" onclick="popUp('account')"> Add Account </button>
+
+        <div id="pop-up-overlay" class="overlay-container">
+            <div id="box" class="pop-up-box">  </div>
+        </div> 
+    </body>
+</html>
