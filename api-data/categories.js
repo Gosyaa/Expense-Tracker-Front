@@ -10,6 +10,8 @@ let categories = [];
             categories[i].color = categories[i].hex;
             categories[i].subs = categories[i].subcategories;
         }
+        generateList();
+        generatePlot();
     }
     else{
         alert('Error: ' + response.status);
