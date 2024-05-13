@@ -14,6 +14,8 @@ const spendForm = `
     <form class="form-body" id="spend-form">
         <input type="text" placeholder="Имя траты" id="spend-name-input"><br>
         <input type="number" min="0" placeholder="Сумма траты" id="spend-amount"><br>
+        <label for="account-selector"> Счёт: </label>
+        <select class="account-selector" id="account-selector" name="account-selector"> </select><br>
         <label for='category-selector'> Категория: </label>
         <select id='category-selector' name='category-selector'> </select><br>
         <label for='sub-selector'> Подкатегория: </label>
@@ -39,7 +41,7 @@ const addMoneyForm = `
     <form class="form-body" id="income-form">
         <label for="account-selector"> Account: </label>
         <select class="account-selector" id="account-selector" name="account-selector"> </select><br>
-        <input type="number" placeholder="Ammount" id="add-ammount-input"><br>
+        <input type="number" min="0" placeholder="Ammount" id="add-ammount-input"><br>
         <input type="submit" value="Add">
     </form>
     <button class="pop-up" onclick="closePopUp();"> Close this window </button>
@@ -52,7 +54,7 @@ const transferForm = `
         <select class="account-selector" id="account1-selector" name="account1-selector"> </select><br>
         <label for="account2-selector"> Receiving Account: </label>
         <select class="account-selector" id="account2-selector" name="account2-selector"> </select><br>
-        <input type="number" placeholder="Ammount" id="add-ammount-input"><br>
+        <input type="number" min="0" placeholder="Ammount" id="add-ammount-input"><br>
         <input type="submit" value="Transfer">
     </form>
     <button class="pop-up" onclick="closePopUp();"> Close this window </button>
@@ -106,6 +108,7 @@ function popUp(popUpTar){
             let form = document.getElementById('spend-form');
             form.addEventListener('submit', addSpend);
             categorySelectorSetUp();
+            accountSelectorSetUp();
             let subSelect = document.getElementById('sub-selector');
             let categorySelect = document.getElementById('category-selector');
             categorySelect.addEventListener('change', (event) => {
@@ -172,108 +175,4 @@ function closePopUp(){
     overlay.classList.toggle('show');
     const box = document.getElementById('box');
     box.classList.toggle('show');
-}
-
-function addCategory(event){
-    event.preventDefault();
-
-    const categoryNameEl = document.getElementById('category-name-input');
-    const categoryName = categoryNameEl.value;
-    const colorEl = document.getElementById('color-picker');
-    const color_hex = colorEl.value;
-    let unique = false;
-    if (categoryName.length > 0 && categoryName.length <= 75){
-        unique = true;
-        categories.forEach(category => {
-            if (categoryName == category.name){
-                unique = false;
-            }
-        });
-        if (unique){
-            categories.push({
-                id: Math.floor(Math.random() * 10000),
-                name: categoryName,
-                color: color_hex,
-                subs: [
-                    {
-                        id: 1,
-                        name: 'General'
-                    }
-                ]
-            });
-            const n = categories.length;
-            [categories[n - 1], categories[n - 2]] = [categories[n - 2], categories[n - 1]];
-            generatePlot();
-            generateList();
-        }
-    }
-    categoryNameEl.value = '';
-    colorEl.value = '#000000';
-    if (unique){
-        closePopUp();
-    }
-    else{
-        alert('Ошибка');
-        //Улучшить оповешение
-        
-    }  
-}
-
-function addSpend(event){
-    event.preventDefault();
-
-    const spendName = document.getElementById('spend-name-input').value;
-    const spendAmount = parseInt(document.getElementById('spend-amount').value);
-    const spendCategory = document.getElementById('category-selector').value;
-    const spendSub = document.getElementById('sub-selector').value;
-    const now = new Date();
-    if (spendName.length > 0  && spendName.length <= 50){
-        spends.push({
-            id: Math.floor(Math.random() * 10000),
-            name: spendName,
-            category: spendCategory,
-            sub: spendSub,
-            amount: spendAmount,
-            date: now.toISOString()
-        });
-        generatePlot();
-        generateList();
-        closePopUp();
-    }
-    else{
-        alert('Ошибка');
-        //Улучшить оповешение
-    }
-}
-
-function addSub(event){
-    event.preventDefault();
-
-    const categoryName = document.getElementById('category-selector').value;
-    
-    let curCategory;
-    categories.forEach(category => {
-        if (category.name ==  categoryName)
-            curCategory = category;
-    });
-
-    const subName = document.getElementById('sub-name-input').value;
-    document.getElementById('sub-name-input').value = '';
-    let unique = true;
-    curCategory.subs.forEach(sub => {
-        if (sub.name == subName)
-            unique = false;
-    });
-    if (unique && subName.length > 0 && subName.length <= 50){
-        curCategory.subs.push({
-            id: Math.floor(Math.random() * 10000),
-            name: subName
-        });
-        generateList();
-        closePopUp();
-    }
-    else{
-        alert('Error');
-        //Оповещение ошибок
-    }
 }
