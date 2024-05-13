@@ -15,6 +15,8 @@ let spends = [];
             spends[i].sub = spends[i].subcategoryName;
             spends[i].category = spends[i].categoryName;
         }
+        generateList();
+        generatePlot();
     }
     else{
         alert('Error: ' + response.status);

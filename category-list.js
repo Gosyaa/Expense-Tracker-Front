@@ -40,13 +40,13 @@ function generateList(){
                     curSpends.push(spend);
                     if (spend.sub == 'Default') {
                         content.innerHTML += `
-                            <li> ${spend.name} — ${spend.amount}$ </li>
+                            <li> ${spend.amount}₽ </li>
                         `;
                     }
                 }
                 else if (category.name == 'Other' && !spend.validCategory){
                     content.innerHTML += `
-                        <li> ${spend.name} — ${spend.amount}$ </li>
+                        <li> ${spend.amount}₽ </li>
                     `;
                 }
             }
@@ -70,7 +70,7 @@ function generateList(){
                 curSpends.forEach(spend => {
                     if (spend.sub == sub.name){
                         contentSub.innerHTML += `
-                            <li> ${spend.name} — ${spend.amount}$ </li>
+                            <li> ${spend.amount}₽ </li>
                         `;
                     }
                 })
@@ -80,4 +80,4 @@ function generateList(){
 
 }
 
-generateList();
+//generateList();

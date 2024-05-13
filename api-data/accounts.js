@@ -1,5 +1,5 @@
 const apiAddress = 'http://localhost:8080';
-const userId = '4ee1f5bf-55af-4d6b-a9b6-7c7e24987987';
+const userId = '17c4a52b-007e-4822-aba4-d1e6538cb2de';
 const getAccountsUrl = apiAddress + '/api/v1/accounts';
 
 let accounts = [];

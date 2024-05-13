@@ -37,7 +37,6 @@ function addCategory(event){
 function addSpend(event){
     event.preventDefault();
 
-    const spendName = document.getElementById('spend-name-input').value;
     const spendAmount = parseInt(document.getElementById('spend-amount').valueAsNumber);
     const spendCategory = document.getElementById('category-selector').value;
     const spendSub = document.getElementById('sub-selector').value;
@@ -51,27 +50,21 @@ function addSpend(event){
 
     let curSub;
     categories.forEach(category => {
-        if (category.name == categoryName){
+        if (category.name == spendCategory){
             category.subs.forEach(sub => {
-                if (sub.name = spendSub)
+                if (sub.name == spendSub)
                     curSub = sub;
             })
         }
     });
 
     const now = new Date();
-    if (spendName.length > 0  && spendName.length <= 50){
-        postExpense({
-            accountId: curAccount.id,
-            subcategoryId: curSub.id,
-            amount: spendAccount
-        }, spendAccount, spendCategory, spendSub);
-        closePopUp();
-    }
-    else{
-        alert('Ошибка');
-        //Улучшить оповешение
-    }
+    postExpense({
+        accountId: curAccount.id,
+        subcategoryId: curSub.id,
+        amount: spendAmount
+    }, spendAccount, spendCategory, spendSub);
+    closePopUp();
 }
 
 function addSub(event){
