@@ -14,21 +14,12 @@ function addCategory(event){
             }
         });
         if (unique){
-            categories.push({
-                id: Math.floor(Math.random() * 10000),
+            postCategory({
+                userId: userId,
                 name: categoryName,
-                color: color_hex,
-                subs: [
-                    {
-                        id: 1,
-                        name: 'General'
-                    }
-                ]
+                hex: color_hex,
+                type: "EXPENSE"
             });
-            const n = categories.length;
-            [categories[n - 1], categories[n - 2]] = [categories[n - 2], categories[n - 1]];
-            generatePlot();
-            generateList();
         }
     }
     categoryNameEl.value = '';
@@ -46,7 +37,6 @@ function addCategory(event){
 function addSpend(event){
     event.preventDefault();
 
-    const spendName = document.getElementById('spend-name-input').value;
     const spendAmount = parseInt(document.getElementById('spend-amount').valueAsNumber);
     const spendCategory = document.getElementById('category-selector').value;
     const spendSub = document.getElementById('sub-selector').value;
@@ -57,24 +47,24 @@ function addSpend(event){
             curAccount = account;
     });
     curAccount.balance -= spendAmount;
+
+    let curSub;
+    categories.forEach(category => {
+        if (category.name == spendCategory){
+            category.subs.forEach(sub => {
+                if (sub.name == spendSub)
+                    curSub = sub;
+            })
+        }
+    });
+
     const now = new Date();
-    if (spendName.length > 0  && spendName.length <= 50){
-        spends.push({
-            id: Math.floor(Math.random() * 10000),
-            name: spendName,
-            category: spendCategory,
-            sub: spendSub,
-            amount: spendAmount,
-            date: now.toISOString()
-        });
-        generatePlot();
-        generateList();
-        closePopUp();
-    }
-    else{
-        alert('Ошибка');
-        //Улучшить оповешение
-    }
+    postExpense({
+        accountId: curAccount.id,
+        subcategoryId: curSub.id,
+        amount: spendAmount
+    }, spendAccount, spendCategory, spendSub);
+    closePopUp();
 }
 
 function addSub(event){
@@ -96,11 +86,10 @@ function addSub(event){
             unique = false;
     });
     if (unique && subName.length > 0 && subName.length <= 50){
-        curCategory.subs.push({
-            id: Math.floor(Math.random() * 10000),
+        postSub({
+            categoryId: curCategory.id,
             name: subName
-        });
-        generateList();
+        }, categoryName);
         closePopUp();
     }
     else{

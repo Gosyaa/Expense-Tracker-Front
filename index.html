@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="styles/pop-up.css">
     </head>
     <body>
+
         <h1> Expenses </h1>
         <a href="accounts.html"> My Accounts </a>
         <h3> Time Period </h3>
@@ -15,16 +16,9 @@
             <input type="date" name="end-date" id="end-date"><br>
         </form>
         <script src="dateHandler.js"></script>
-        <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-        </script>
-        <script src="data/categories.js"></script>
-        <script src="data/spends.js"></script>
-        <script src="data/accounts.js"></script>
 
         <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-        <script src="plot-generator.js"></script>
-
+       
         <button class="pop-up" onclick="popUp('category');"> Добавить категорию </button>
         <button class="pop-up" onclick="popUp('sub');"> Добавит подкатегорию </button>
         <button class="pop-up" onclick="popUp('spend');"> Добавить трату </button>
@@ -35,6 +29,17 @@
         <script src="pop-up.js"></script>
 
         <div id="lists-div"> </div>
+
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+        </script>
+        <script src="plot-generator.js"></script>
         <script src="category-list.js"></script>
+
+        <script src="api-data/accounts.js"></script>
+        <script src="api-data/categories.js"></script>
+        <script src="api-data/spends.js"></script>
+        <script src="api-data/post.js"></script>
+
     </body>
 </html>

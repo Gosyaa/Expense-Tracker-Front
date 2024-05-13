@@ -38,22 +38,22 @@ function generateList(){
             if (spend.date >= dateStart.toISOString() && spend.date <= dateEnd.toISOString()){
                 if (spend.category == category.name){
                     curSpends.push(spend);
-                    if (spend.sub == 'General') {
+                    if (spend.sub == 'Default') {
                         content.innerHTML += `
-                            <li> ${spend.name} — ${spend.amount}$ </li>
+                            <li> ${spend.amount}₽ </li>
                         `;
                     }
                 }
                 else if (category.name == 'Other' && !spend.validCategory){
                     content.innerHTML += `
-                        <li> ${spend.name} — ${spend.amount}$ </li>
+                        <li> ${spend.amount}₽ </li>
                     `;
                 }
             }
         });
         
         category.subs.forEach(sub => {
-            if (sub.name !='General'){
+            if (sub.name !='Default'){
                 content.innerHTML += `
                     <li> 
                         <button class="collapsible-${category.name} collapsible-sub"
@@ -70,7 +70,7 @@ function generateList(){
                 curSpends.forEach(spend => {
                     if (spend.sub == sub.name){
                         contentSub.innerHTML += `
-                            <li> ${spend.name} — ${spend.amount}$ </li>
+                            <li> ${spend.amount}₽ </li>
                         `;
                     }
                 })
@@ -80,4 +80,4 @@ function generateList(){
 
 }
 
-generateList();
+//generateList();

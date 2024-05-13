@@ -46,4 +46,4 @@ function generatePlot(){
 
 }
 
-generatePlot();
+//generatePlot();

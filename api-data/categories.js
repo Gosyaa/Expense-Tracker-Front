@@ -1,15 +1,19 @@
 const getCategoriesUrl = apiAddress + '/api/v1/categories';
-
-let response = await fetch(getCategoriesUrl + `?userId=${userId}`);
-
 let categories = [];
 
-if (response.ok){
-    categories = await response.json();
-    categories.array.forEach(category => {
-        category.color = category.hex;
-    });
-}
-else{
-    alert('Error: ' + response.status);
-}
+(async () => {
+    let response = await fetch(getCategoriesUrl + `?userId=${userId}`);
+
+    if (response.ok){
+        categories = await response.json();
+        for (let i = 0; i < categories.length; i++){
+            categories[i].color = categories[i].hex;
+            categories[i].subs = categories[i].subcategories;
+        }
+        generateList();
+        generatePlot();
+    }
+    else{
+        alert('Error: ' + response.status);
+    }
+})();

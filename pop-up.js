@@ -12,14 +12,13 @@ const categoryForm = `
 const spendForm = `
     <h2 class="form-title"> Добавить трату </h2>
     <form class="form-body" id="spend-form">
-        <input type="text" placeholder="Имя траты" id="spend-name-input"><br>
-        <input type="number" min="0" placeholder="Сумма траты" id="spend-amount"><br>
         <label for="account-selector"> Счёт: </label>
         <select class="account-selector" id="account-selector" name="account-selector"> </select><br>
         <label for='category-selector'> Категория: </label>
         <select id='category-selector' name='category-selector'> </select><br>
         <label for='sub-selector'> Подкатегория: </label>
         <select id='sub-selector' name='sub-selector'> </select><br>
+        <input type="number" min="0" placeholder="Сумма траты" id="spend-amount"><br>
         <input type="submit">
     </form>
     <button class="pop-up" onclick="closePopUp();"> Закрыть окно </button>

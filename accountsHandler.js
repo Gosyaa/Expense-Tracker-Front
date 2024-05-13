@@ -7,10 +7,8 @@ function updateAccounts(){
         tar.innerHTML += `
             <div class="account" id="account-${account.id}">
                 <h3 class="account-name"> ${account.name} </h3>
-                <strong class="account-ammount"> ${account.balance}$ </strong>
+                <strong class="account-ammount"> ${account.balance}₽ </strong>
             </div>
         `;
     });
 }
-
-updateAccounts();
