@@ -18,7 +18,7 @@ function addCategory(event){
                 userId: userId,
                 name: categoryName,
                 hex: color_hex,
-                type: "EXPENSE"
+                type: window.mode
             });
         }
     }
@@ -46,7 +46,7 @@ function addSpend(event){
         if (spendAccount == account.name)
             curAccount = account;
     });
-    curAccount.balance -= spendAmount;
+    //curAccount.balance -= spendAmount;
 
     let curSub;
     categories.forEach(category => {
@@ -58,7 +58,6 @@ function addSpend(event){
         }
     });
 
-    const now = new Date();
     postExpense({
         accountId: curAccount.id,
         subcategoryId: curSub.id,
