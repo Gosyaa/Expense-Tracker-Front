@@ -5,10 +5,12 @@ function generatePlot(){
     let n = categories.length;
 
     categories.forEach(element => {
-        data.push(0);
-        label.push(element.name);
-        color.push(element.color);
-        //color.push(`rgb(${element.colorR}, ${element.colorG}, ${element.colorB})`);
+        if (element.type == window.mode){
+            data.push(0);
+            label.push(element.name);
+            color.push(element.color);
+            //color.push(`rgb(${element.colorR}, ${element.colorG}, ${element.colorB})`);
+        }
     });
 
     spends.forEach((spend, index) =>{
@@ -22,10 +24,10 @@ function generatePlot(){
                     break;
                 }
             }
-            if (!f){
+            /*if (!f){
                 spends[index].validCategory = false;
                 data[n - 1] += spend.amount;
-            }
+            }*/
         }   
     });
 

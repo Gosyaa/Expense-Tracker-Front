@@ -6,9 +6,9 @@
     </head>
     <body>
 
-        <h1> Expenses </h1>
-        <script> window.mode = "EXPENSE" </script>
-        <a href="incomes.html"> My Incomes </a>
+        <h1> Incomes </h1>
+        <script> window.mode="INCOME" </script>
+        <a href="index.html"> My Expenses </a>
         <a href="accounts.html"> My Accounts </a>
         <h3> Time Period </h3>
         <form class="time-period" id="time-period">
@@ -21,9 +21,9 @@
 
         <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
        
-        <button class="pop-up" onclick="popUp('category');"> Добавить категорию </button>
-        <button class="pop-up" onclick="popUp('sub');"> Добавит подкатегорию </button>
-        <button class="pop-up" onclick="popUp('spend');"> Добавить трату </button>
+        <button class="pop-up" onclick="popUp('category', 'INCOME');"> Добавить категорию </button>
+        <button class="pop-up" onclick="popUp('sub', 'INCOME');"> Добавит подкатегорию </button>
+        <button class="pop-up" onclick="popUp('spend', 'INCOME');"> Добавить доход </button>
         <div id="pop-up-overlay" class="overlay-container">
             <div id="box" class="pop-up-box">  </div>
         </div> 

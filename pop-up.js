@@ -68,13 +68,14 @@ const addAccountForm=`
     <button class="pop-up" onclick="closePopUp();"> Close this window </button>
 `;
 
-function categorySelectorSetUp(){
+function categorySelectorSetUp(mode="EXPENSE"){
     let categorySelect = document.getElementById('category-selector');
     categorySelect.innerHTML = '';
     categories.forEach(category =>{
-        categorySelect.innerHTML += `
-            <option value='${category.name}'> ${category.name} </option>
-        `;
+            if (category.type == mode)
+            categorySelect.innerHTML += `
+                <option value='${category.name}'> ${category.name} </option>
+            `;
     });
 }
 
@@ -90,7 +91,8 @@ function accountSelectorSetUp(){
     });
 }
 
-function popUp(popUpTar){
+function popUp(popUpTar, mode="EXPENSE"){
+    window.mode = mode;
     const overlay = document.getElementById('pop-up-overlay');
     overlay.classList.toggle('show');
     const box = document.getElementById('box');
@@ -103,37 +105,47 @@ function popUp(popUpTar){
             break;
         }
         case 'spend': {
-            box.innerHTML += spendForm;
-            let form = document.getElementById('spend-form');
-            form.addEventListener('submit', addSpend);
-            categorySelectorSetUp();
-            accountSelectorSetUp();
-            let subSelect = document.getElementById('sub-selector');
-            let categorySelect = document.getElementById('category-selector');
-            categorySelect.addEventListener('change', (event) => {
-                subSelect.innerHTML = '';
-                const categoryName = event.target.value;
-                let curCategory;
-                categories.forEach(category => {
-                    if (category.name == categoryName)
-                        curCategory = category;
+            if (categories.length == 0){
+                alert("Create Category First!");
+            }
+            else{
+                box.innerHTML += spendForm;
+                let form = document.getElementById('spend-form');
+                form.addEventListener('submit', addSpend);
+                categorySelectorSetUp(window.mode);
+                accountSelectorSetUp();
+                let subSelect = document.getElementById('sub-selector');
+                let categorySelect = document.getElementById('category-selector');
+                categorySelect.addEventListener('change', (event) => {
+                    subSelect.innerHTML = '';
+                    const categoryName = event.target.value;
+                    let curCategory;
+                    categories.forEach(category => {
+                        if (category.name == categoryName)
+                            curCategory = category;
+                    });
+                    curCategory.subs.forEach(sub => {
+                        subSelect.innerHTML += `
+                            <option value='${sub.name}'> ${sub.name} </option>
+                        `;
+                    });
                 });
-                curCategory.subs.forEach(sub => {
-                    subSelect.innerHTML += `
-                        <option value='${sub.name}'> ${sub.name} </option>
-                    `;
-                });
-            });
-            let event = new Event('change');
-            categorySelect.dispatchEvent(event);
-            break;
+                let event = new Event('change');
+                categorySelect.dispatchEvent(event);
+                break;
+            }
         }
         case 'sub': {
-            box.innerHTML += subForm;
-            let form = document.getElementById('sub-form');
-            form.addEventListener('submit', addSub);
-            categorySelectorSetUp();
-            break;
+            if (categories.length == 0){
+                alert("Create Category First!");
+            }
+            else{
+                box.innerHTML += subForm;
+                let form = document.getElementById('sub-form');
+                form.addEventListener('submit', addSub);
+                categorySelectorSetUp(window.mode);
+                break;
+            }
         }
         case 'add': {
             box.innerHTML += addMoneyForm;

@@ -22,7 +22,10 @@ async function postCategory(category){
 }
 
 async function postExpense(expense, accountName, categoryName, subName){
-    const url = apiAddress + '/api/v1/transactions/expense';
+    let url = apiAddress + '/api/v1/transactions/expense';
+    if (window.mode == 'INCOME'){
+        url = apiAddress + '/api/v1/transactions/income';
+    }
     let response = await fetch(url, {
         method: 'POST',
         headers: {
