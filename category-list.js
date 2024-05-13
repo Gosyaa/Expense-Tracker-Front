@@ -38,7 +38,7 @@ function generateList(){
             if (spend.date >= dateStart.toISOString() && spend.date <= dateEnd.toISOString()){
                 if (spend.category == category.name){
                     curSpends.push(spend);
-                    if (spend.sub == 'General') {
+                    if (spend.sub == 'Default') {
                         content.innerHTML += `
                             <li> ${spend.name} — ${spend.amount}$ </li>
                         `;
@@ -53,7 +53,7 @@ function generateList(){
         });
         
         category.subs.forEach(sub => {
-            if (sub.name !='General'){
+            if (sub.name !='Default'){
                 content.innerHTML += `
                     <li> 
                         <button class="collapsible-${category.name} collapsible-sub"

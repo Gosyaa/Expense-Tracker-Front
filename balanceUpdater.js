@@ -3,7 +3,7 @@ function transferMoney(event){
 
     const accountName1 = document.getElementById('account1-selector').value;
     const accountName2 = document.getElementById('account2-selector').value;
-    const ammount = document.getElementById('add-ammount-input').valueAsNumber;
+    const amount = document.getElementById('add-ammount-input').valueAsNumber;
     if (accountName1 != accountName2){
         let curAccount1, curAccount2;
         accounts.forEach(account => {
@@ -12,13 +12,15 @@ function transferMoney(event){
             if (account.name == accountName2)
                 curAccount2 = account;
         }); 
-        curAccount1.balance -= ammount;
-        curAccount2.balance += ammount;
-        updateAccounts();
+        postTransfer({
+            accountFromId: curAccount1.id,
+            accountToId: curAccount2.id,
+            amount: amount
+        }, accountName1, accountName2);
         closePopUp();
     }
     else{
-        alert("Error!")
+        alert("Error!");
     }
 }
 
@@ -47,12 +49,11 @@ function addAccount(event){
             unique = false;
     });
     if (unique){
-        accounts.push({
-            id: Math.floor(Math.random() * 10000),
-            name: accountName, 
+        postAccount({
+            userId: userId,
+            name: accountName,
             balance: 0
         });
-        updateAccounts();
         closePopUp();
     }
     else{

@@ -6,7 +6,7 @@ let categories = [
         subs: [
             {
                 id: 1,
-                name: "General"
+                name: "Default"
             },
             {
                 id: 2,
@@ -25,7 +25,7 @@ let categories = [
         subs: [
             {
                 id: 1,
-                name: "General"
+                name: "Default"
             }
         ]
     },
@@ -36,7 +36,7 @@ let categories = [
         subs: [
             {
                 id: 1,
-                name: "General"
+                name: "Default"
             }
         ]
     },
@@ -47,7 +47,7 @@ let categories = [
         subs: [
             {
                 id: 1,
-                name: "General"
+                name: "Default"
             }
         ]
     }
