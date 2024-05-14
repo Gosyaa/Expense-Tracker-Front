@@ -97,6 +97,7 @@ function popUp(popUpTar, mode="EXPENSE"){
     overlay.classList.toggle('show');
     const box = document.getElementById('box');
     box.innerHTML = '';
+    let close = false;
     switch (popUpTar){  
         case 'category': {
             box.innerHTML += categoryForm;
@@ -107,6 +108,8 @@ function popUp(popUpTar, mode="EXPENSE"){
         case 'spend': {
             if (categories.length == 0){
                 alert("Create Category First!");
+                close = true;
+                break;
             }
             else{
                 box.innerHTML += spendForm;
@@ -138,6 +141,8 @@ function popUp(popUpTar, mode="EXPENSE"){
         case 'sub': {
             if (categories.length == 0){
                 alert("Create Category First!");
+                close = true;
+                break;
             }
             else{
                 box.innerHTML += subForm;
@@ -179,6 +184,8 @@ function popUp(popUpTar, mode="EXPENSE"){
     let height = Math.max( body.scrollHeight, body.offsetHeight, 
                        html.clientHeight, html.scrollHeight, html.offsetHeight);
     overlay.style.height = `${height}px`;
+    if (close)
+        closePopUp();
 }
 
 function closePopUp(){
