@@ -1,27 +1,27 @@
 const categoryForm = `
-    <h2 class="form-title"> Добавить категорию </h2>
+    <h2 class="form-title"> Add Category </h2>
     <form class="form-body" id="category-form">
-        <input type="text" placeholder="Имя категории" id="category-name-input"><br>
-        <label for="color-picker">Цвет категории: </label>
+        <input type="text" placeholder="Category Name" id="category-name-input"><br>
+        <label for="color-picker">Category Color: </label>
         <input type="color" name="color-picker" id="color-picker"><br>
-        <input type="submit">
+        <input type="submit" value="Add Category">
     </form>
-    <button class="pop-up" onclick="closePopUp();"> Закрыть окно </button>
+    <button class="pop-up" onclick="closePopUp();"> Close Window </button>
 `;
 
 const spendForm = `
-    <h2 class="form-title"> Добавить трату </h2>
+    <h2 class="form-title"> Add Expense </h2>
     <form class="form-body" id="spend-form">
-        <label for="account-selector"> Счёт: </label>
+        <label for="account-selector"> Account: </label>
         <select class="account-selector" id="account-selector" name="account-selector"> </select><br>
-        <label for='category-selector'> Категория: </label>
+        <label for='category-selector'> Category: </label>
         <select id='category-selector' name='category-selector'> </select><br>
-        <label for='sub-selector'> Подкатегория: </label>
+        <label for='sub-selector'> Subcategory: </label>
         <select id='sub-selector' name='sub-selector'> </select><br>
-        <input type="number" min="0" placeholder="Сумма траты" id="spend-amount"><br>
-        <input type="submit">
+        <input type="number" min="0" placeholder="Amount" id="spend-amount"><br>
+        <input type="submit" value="Add">
     </form>
-    <button class="pop-up" onclick="closePopUp();"> Закрыть окно </button>
+    <button class="pop-up" onclick="closePopUp();"> Close Window </button>
 `;
 
 const subForm = `
@@ -30,9 +30,9 @@ const subForm = `
         <label for='category-selector'> Category: </label>
         <select id='category-selector' name='category-selector'> </select><br>
         <input type="text" placeholder="Subcategory name" id="sub-name-input"><br>
-        <input type="submit" value="Add">
+        <input type="submit" value="Add Subcategory">
     </form>
-    <button class="pop-up" onclick="closePopUp();"> Close this window </button>
+    <button class="pop-up" onclick="closePopUp();"> Close Window </button>
 `;
 
 const addMoneyForm = `
@@ -56,16 +56,16 @@ const transferForm = `
         <input type="number" min="0" placeholder="Ammount" id="add-ammount-input"><br>
         <input type="submit" value="Transfer">
     </form>
-    <button class="pop-up" onclick="closePopUp();"> Close this window </button>
+    <button class="pop-up" onclick="closePopUp();"> Close Window </button>
 `;
 
 const addAccountForm=`
     <h2 class="form-title"> New Account </h2>
     <form class="form-body" id="account-form">
         <input type="text" placeholder="Name of the account" id="add-account-input"><br>
-        <input type="submit" value="Add">
+        <input type="submit" value="Add Account">
     </form>
-    <button class="pop-up" onclick="closePopUp();"> Close this window </button>
+    <button class="pop-up" onclick="closePopUp();"> Close Window </button>
 `;
 
 function categorySelectorSetUp(mode="EXPENSE"){
