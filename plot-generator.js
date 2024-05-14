@@ -43,7 +43,14 @@ function generatePlot(){
     const chart = document.getElementById('myChart');
     new Chart(chart, {
         type:'pie',
-        data: pieData
+        data: pieData,
+        options: {
+            legend: {
+                labels: {
+                    fontColor: 'white'
+                }
+            }
+        }
     });
 
 }

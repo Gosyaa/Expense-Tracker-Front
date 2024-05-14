@@ -6,3 +6,7 @@ label[for='color-picker']{
     padding-top: 8px;
     padding-bottom: 8px;
 }
+
+input[type='date']{
+    display: block;
+}
